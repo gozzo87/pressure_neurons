@@ -72,7 +72,7 @@ class net(net.SpNet):
     self.opt.step()
     return loss.detach().cpu().item()
 
-  def split(self, x, y, epsilon):
+  def split(self, x, y, epsilon, num_to_split=None):
     start_time = time.time()
     self.opt.zero_grad()
     y_hat = self.forward(x, split=True)
@@ -86,7 +86,7 @@ class net(net.SpNet):
     n_neurons_added = {}
     # -- actual splitting -- #
     for i in reversed(self.layers_to_split):  # i is the i-th module in self.net
-      n_new, idx = self.net[i].active_split(threshold, epsilon)
+      n_new, idx = self.net[i].active_split(threshold, epsilon, num_to_split)
       n_neurons_added['classifier layer %d' % i] = n_new
       n_neurons.append(n_new)
       if n_new > 0:  # we have indeed splitted this layer
