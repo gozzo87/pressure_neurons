@@ -1,3 +1,23 @@
+
+import os
+import sys
+import time
+
+import matplotlib.pyplot as plt
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.optim import SGD, Adam
+from torch.utils.data import DataLoader, ConcatDataset
+from torchvision import datasets, transforms
+
+from google3.experimental.users.mxv.splitting_nets_torch import linear
+from google3.experimental.users.mxv.splitting_nets_torch import module
+from google3.experimental.users.mxv.splitting_nets_torch import net
+
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 class net(net.SpNet):
 
   def __init__(self, n_neurons=3):
