@@ -163,9 +163,12 @@ class Linear(SpModule):
       self.bn = new_bn
     return H_new, idx
 
-  def active_split(self, threshold, epsilon=1e-2):
-    idx = np.argwhere(self.w <= threshold).reshape(
-        -1)  # those are neurons ready for splitting
+  def active_split(self, threshold, epsilon=1e-2, num_to_split=None):
+    if num_to_split == None:
+      idx = np.argwhere(self.w <= threshold).reshape(-1)
+    else:
+      idx_ = np.argwhere(self.w <= threshold).reshape(-1)
+      idx = np.argsort(self.w)[:num_to_split]
     H_new = len(idx)
     if H_new == 0:
       return 0, None
