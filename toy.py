@@ -12,9 +12,9 @@ from torch.optim import SGD, Adam
 from torch.utils.data import DataLoader, ConcatDataset
 from torchvision import datasets, transforms
 
-from google3.experimental.users.mxv.splitting_nets_torch import linear
-from google3.experimental.users.mxv.splitting_nets_torch import module
-from google3.experimental.users.mxv.splitting_nets_torch import net
+from . import linear
+from . import module
+from . import net
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
