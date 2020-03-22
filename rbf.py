@@ -1,3 +1,17 @@
+import os
+import sys
+import time
+
+import matplotlib.pyplot as plt
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.optim import SGD, Adam
+from torch.utils.data import DataLoader, ConcatDataset
+from torchvision import datasets, transforms
+
+
 class rbf(nn.Module):
   """the ground truth function of rbf.
   """
@@ -5,7 +19,7 @@ class rbf(nn.Module):
   def __init__(self):
     super(rbf, self).__init__()
     self.dh = 15
-    self.theta = n n.Parameter(torch.randn(self.dh, 2) * 3)
+    self.theta = nn.Parameter(torch.randn(self.dh, 2) * 3)
     self.w = nn.Parameter(torch.randn(1, self.dh) * 3)
 
   def forward(self, x):
